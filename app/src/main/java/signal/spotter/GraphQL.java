@@ -19,7 +19,7 @@ import org.apache.http.util.EntityUtils;
 
 import com.google.gson.Gson;
 
-public class Database {
+public class GraphQL {
 
     public static List<Report> queryReports() throws Exception {
         final String requestBody = "{\"query\": \"query { listReports { items { datetime x y } } }\"}";
