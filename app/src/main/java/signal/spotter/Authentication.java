@@ -22,6 +22,8 @@ public class Authentication {
 
     private static final String API_ENDPOINT = "https://cognito-idp.us-east-1.amazonaws.com/";
 
+    public static boolean isAuthenticated = false;
+
     public static boolean Authenticate(String username, String password) throws Exception {
 
         String COGNITO_CLIENT_ID = "";
@@ -60,6 +62,8 @@ public class Authentication {
 
             JSONObject responseObject = new JSONObject(responseString);
             String session = responseObject.getString("Session");
+
+            isAuthenticated = true;
 
             return session != null;
 

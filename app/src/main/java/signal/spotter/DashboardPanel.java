@@ -12,8 +12,6 @@ import java.awt.Color;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-// import static signal.spotter.GUI.screen_width;
-
 public class DashboardPanel extends JPanel {
 
     // Wherever the user's cursor is
@@ -52,7 +50,7 @@ public class DashboardPanel extends JPanel {
         int originalHeight = originalImage.getHeight(null);
 
         double scaleFactor = Math.min(1d,
-                (double) 325 / (double) originalWidth);
+                (double) 315 / (double) originalWidth);
 
         int scaledWidth = (int) (originalWidth * scaleFactor);
         int scaledHeight = (int) (originalHeight * scaleFactor);
