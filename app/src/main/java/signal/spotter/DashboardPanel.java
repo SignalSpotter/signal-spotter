@@ -2,13 +2,15 @@ package signal.spotter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.awt.Color;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 // import static signal.spotter.GUI.screen_width;
 
@@ -64,12 +66,8 @@ public class DashboardPanel extends JPanel {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
 
-                // Paint all of the points
-                ArrayList<Point> points = new ArrayList<>();
-                points.add(new Point(4, 100));
-                points.add(new Point(8, 200));
-
                 // Draw a small circle at each reported value
+
                 List<Report> filteredReports = reports.stream()
                         .filter(report -> {
                             LocalTime time = LocalTime.parse(report.getDatetime().substring(11, 19));
@@ -80,17 +78,19 @@ public class DashboardPanel extends JPanel {
 
                 for (Report report : filteredReports) {
                     g.setColor(Color.RED);
-                    g.fillOval((int) (report.getX() * scaledWidth), (int) (report.getY() * scaledHeight), 5, 5);
+                    g.fillOval((int) (report.getX() * scaledWidth), (int) (report.getY() * scaledHeight), 10, 10);
                 }
 
                 // Paint the cursor
                 if (cursor != null) {
-                    int radius = 10;
-                    int x = cursor.x - radius;
-                    int y = cursor.y - radius;
-                    g.setColor(Color.RED);
-                    if (isReporting)
+                    if (isReporting) {
+                        int radius = 10;
+                        int x = cursor.x - radius;
+                        int y = cursor.y - radius;
+                        g.setColor(Color.RED);
                         g.fillOval(x, y, radius * 2, radius * 2);
+                    }
+
                 }
             }
         };
@@ -109,10 +109,44 @@ public class DashboardPanel extends JPanel {
             }
         });
 
-        // Add all of the components to the page
-        add(image_label, BorderLayout.CENTER);
-        add(reportButton, BorderLayout.SOUTH);
-        add(slider, BorderLayout.SOUTH);
+        image_label.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (isReporting) {
+                    isReporting = false;
+                    reportButton.setBackground(Color.GREEN);
+                    reportButton.setText("Report");
+                }
+
+                try {
+                    // Get the current date and time in ISO 8601 format
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter awsFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                    String awsDateTime = now.format(awsFormatter);
+
+                    float x = e.getX() / (float) scaledWidth; // Get the current x coordinate of the mouse
+                    float y = e.getY() / (float) scaledHeight; // Get the current y coordinate of the mouse
+
+                    GraphQL.createReport(new Report(awsDateTime, x, y));
+                    System.out.println("Report creation successful");
+
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+
+                try {
+                    Thread.sleep(2000);
+                    reports = GraphQL.queryReports();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        add(reportButton);
+
+        add(image_label);
+
+        add(slider);
 
     }
 

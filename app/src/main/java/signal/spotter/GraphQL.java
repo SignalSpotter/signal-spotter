@@ -90,8 +90,11 @@ public class GraphQL {
             CloseableHttpClient httpClient = HttpClients.createDefault();
             HttpEntity responseEntity = httpClient.execute(httpPost).getEntity();
             if (responseEntity != null) {
+                String responseString = EntityUtils.toString(responseEntity);
+                System.out.println(responseString);
                 return true;
             }
+            System.out.println("Report creation returned no response");
             return false;
 
         } catch (Exception e) {
