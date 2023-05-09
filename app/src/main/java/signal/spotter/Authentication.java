@@ -31,7 +31,7 @@ public class Authentication {
         try {
             Properties properties = new Properties();
             properties.load(
-                    new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\resources\\local.properties"));
+                    new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/local.properties"));
 
             COGNITO_CLIENT_ID = properties.getProperty("COGNITO_CLIENT_ID");
         } catch (IOException e) {

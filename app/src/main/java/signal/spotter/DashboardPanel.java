@@ -42,7 +42,7 @@ public class DashboardPanel extends JPanel {
         TimeSlider slider = new TimeSlider();
 
         // Load the image
-        ImageIcon originalIcon = new ImageIcon(System.getProperty("user.dir") + "\\src\\main\\resources\\csusm3.png");
+        ImageIcon originalIcon = new ImageIcon(System.getProperty("user.dir") + "/src/main/resources/csusm3.png");
         Image originalImage = originalIcon.getImage();
 
         // Calculate the scaling factor to fit within the frame

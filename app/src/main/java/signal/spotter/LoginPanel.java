@@ -16,7 +16,7 @@ public class LoginPanel extends JPanel {
         c.insets = new Insets(5, 5, 5, 5); // Add some padding
 
         // Load image and scale it to 300 pixels width
-        ImageIcon imageIcon = new ImageIcon(System.getProperty("user.dir") + "\\src\\main\\resources\\csusm-logo.jpg",
+        ImageIcon imageIcon = new ImageIcon(System.getProperty("user.dir") + "/src/main/resources/csusm-logo.jpg",
                 "CSUSM Logo");
         Image image = imageIcon.getImage().getScaledInstance(300, -1, Image.SCALE_SMOOTH);
         ImageIcon scaledImageIcon = new ImageIcon(image);

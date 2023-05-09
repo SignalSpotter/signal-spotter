@@ -29,7 +29,7 @@ public class GraphQL {
         try {
             Properties properties = new Properties();
             properties.load(
-                    new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\resources\\local.properties"));
+                    new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/local.properties"));
 
             API_ENDPOINT = properties.getProperty("API_ENDPOINT");
             API_KEY = properties.getProperty("API_KEY");
@@ -71,7 +71,7 @@ public class GraphQL {
         try {
             Properties properties = new Properties();
             properties.load(
-                    new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\resources\\local.properties"));
+                    new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/local.properties"));
 
             API_ENDPOINT = properties.getProperty("API_ENDPOINT");
             API_KEY = properties.getProperty("API_KEY");
