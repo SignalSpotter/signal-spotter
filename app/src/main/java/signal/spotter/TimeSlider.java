@@ -7,14 +7,22 @@ import java.util.Hashtable;
 
 public class TimeSlider extends JPanel {
 
-    static final int minValue = 8;
-    static final int maxValue = 20;
     public JSlider sliderMin;
     public JSlider sliderMax;
+
+    Dimension SIZE = new Dimension(350, 50);
 
     public TimeSlider() {
 
         Hashtable<Integer, JLabel> labels = new Hashtable<>();
+        labels.put(0, new JLabel("12"));
+        labels.put(1, new JLabel("1"));
+        labels.put(2, new JLabel("2"));
+        labels.put(3, new JLabel("3"));
+        labels.put(4, new JLabel("4"));
+        labels.put(5, new JLabel("5"));
+        labels.put(6, new JLabel("6"));
+        labels.put(7, new JLabel("7"));
         labels.put(8, new JLabel("8"));
         labels.put(9, new JLabel("9"));
         labels.put(10, new JLabel("10"));
@@ -28,27 +36,36 @@ public class TimeSlider extends JPanel {
         labels.put(18, new JLabel("6"));
         labels.put(19, new JLabel("7"));
         labels.put(20, new JLabel("8"));
+        labels.put(21, new JLabel("9"));
+        labels.put(22, new JLabel("10"));
+        labels.put(23, new JLabel("11"));
 
         JPanel panel = new JPanel(new GridLayout(2, 1));
 
         // Create slider for minimum value
-        sliderMin = new JSlider(JSlider.HORIZONTAL, 8, 20, 8);
+        sliderMin = new JSlider(JSlider.HORIZONTAL, 0, 23, 8);
         sliderMin.setSnapToTicks(true);
         sliderMin.setMajorTickSpacing(1);
         sliderMin.setMinorTickSpacing(1);
         sliderMin.setPaintTicks(true);
         sliderMin.setLabelTable(labels);
         sliderMin.setPaintLabels(true);
+        sliderMin.setPreferredSize(SIZE);
+        sliderMin.setMaximumSize(SIZE);
+        sliderMin.setMinimumSize(SIZE);
         panel.add(sliderMin);
 
         // Create slider for maximum value
-        sliderMax = new JSlider(JSlider.HORIZONTAL, 8, 20, 20);
+        sliderMax = new JSlider(JSlider.HORIZONTAL, 0, 23, 20);
         sliderMax.setSnapToTicks(true);
         sliderMax.setMajorTickSpacing(1);
         sliderMax.setMinorTickSpacing(1);
         sliderMax.setPaintTicks(true);
         sliderMax.setLabelTable(labels);
         sliderMax.setPaintLabels(true);
+        sliderMax.setPreferredSize(SIZE);
+        sliderMax.setMaximumSize(SIZE);
+        sliderMax.setMinimumSize(SIZE);
         panel.add(sliderMax);
 
         // Add listener to sync the sliders
