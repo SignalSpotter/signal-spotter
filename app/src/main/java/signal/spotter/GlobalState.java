@@ -29,4 +29,8 @@ public class GlobalState {
     public synchronized void setReports(List<Report> reports) {
         this.reports = reports;
     }
+
+    public synchronized void clearReports() {
+        reports.clear();
+    }
 }

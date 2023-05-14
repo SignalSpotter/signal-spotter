@@ -22,9 +22,8 @@ public class GUI extends JFrame {
         frame.setSize(screen_width, screen_height);
         frame.setResizable(false);
 
-        // First, authenticate the user
-
         LoginPanel loginPanel = new LoginPanel();
+        RegisterPanel registerPanel = new RegisterPanel();
         DashboardPanel dashboardPanel = new DashboardPanel();
         HomePanel homePanel = new HomePanel();
 
@@ -33,11 +32,35 @@ public class GUI extends JFrame {
                 GlobalState.getInstance()
                         .setJWT(Authentication.Authenticate(loginPanel.getLogin(), loginPanel.getPassword()));
                 GlobalState.getInstance().setReports(GraphQL.queryReports());
+                loginPanel.passwordField.setText("");
                 cardLayout.show(cardPanel, "homePanel");
             } catch (Exception e1) {
                 JOptionPane.showMessageDialog(null, "Error, incorrect username or password!");
                 System.out.println(e1.getMessage());
             }
+        });
+        loginPanel.registerButton.addActionListener(e -> {
+            cardLayout.show(cardPanel, "registerPanel");
+        });
+        registerPanel.registerButton.addActionListener(e -> {
+            try {
+                Authentication.Register(registerPanel.getEmail(), registerPanel.getPassword());
+                registerPanel.emailField.setText("");
+                registerPanel.passwordField1.setText("");
+                registerPanel.passwordField2.setText("");
+                cardLayout.show(cardPanel, "loginPanel");
+            } catch (Exception e1) {
+                JOptionPane.showMessageDialog(null, e1.getMessage());
+            }
+        });
+        registerPanel.loginButton.addActionListener(e -> {
+            cardLayout.show(cardPanel, "loginPanel");
+        });
+
+        homePanel.signOutButton.addActionListener(e -> {
+            GlobalState.getInstance().clearReports();
+            GlobalState.getInstance().setJWT("");
+            cardLayout.show(cardPanel, "loginPanel");
         });
 
         // Create the card layout panel and add two panels to it
@@ -45,6 +68,7 @@ public class GUI extends JFrame {
         cardPanel = new JPanel(cardLayout);
 
         cardPanel.add(loginPanel, "loginPanel");
+        cardPanel.add(registerPanel, "registerPanel");
         cardPanel.add(dashboardPanel, "dashboardPanel");
         cardPanel.add(homePanel, "homePanel");
 

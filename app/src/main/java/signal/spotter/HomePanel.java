@@ -11,8 +11,6 @@ public class HomePanel extends JPanel {
         private javax.swing.JButton jButton2;
         private javax.swing.JMenuItem jMenuItem1;
         private javax.swing.JPopupMenu jPopupMenu1;
-        private javax.swing.JPanel listBar;
-        private javax.swing.JButton listButton;
         public javax.swing.JPanel mapPanel;
         public javax.swing.JPanel menuBar;
         private javax.swing.JButton menuButton;
@@ -22,6 +20,8 @@ public class HomePanel extends JPanel {
         private javax.swing.JButton refreshButton;
         private javax.swing.JPanel reportBar;
         private javax.swing.JButton reportButton;
+        private javax.swing.JPanel signOutBar;
+        public javax.swing.JButton signOutButton;
         private javax.swing.JPanel trendsBar;
         private javax.swing.JButton trendsButton;
 
@@ -42,10 +42,10 @@ public class HomePanel extends JPanel {
                 trendsButton = new javax.swing.JButton();
                 fastBar = new javax.swing.JPanel();
                 fastButton = new javax.swing.JButton();
-                listBar = new javax.swing.JPanel();
-                listButton = new javax.swing.JButton();
                 helpBar = new javax.swing.JPanel();
                 helpButton = new javax.swing.JButton();
+                signOutBar = new javax.swing.JPanel();
+                signOutButton = new javax.swing.JButton();
                 refreshBar = new javax.swing.JPanel();
                 refreshButton = new javax.swing.JButton();
 
@@ -326,50 +326,6 @@ public class HomePanel extends JPanel {
                 gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
                 menuPanel.add(fastBar, gridBagConstraints);
 
-                listBar.setBackground(new java.awt.Color(255, 255, 255));
-                listBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255)));
-                listBar.setMaximumSize(new java.awt.Dimension(1600, 50));
-                listBar.setMinimumSize(new java.awt.Dimension(400, 50));
-                listBar.setPreferredSize(new java.awt.Dimension(400, 50));
-
-                listButton.setBackground(new java.awt.Color(255, 255, 255));
-                listButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-                listButton.setForeground(new java.awt.Color(0, 0, 255));
-                listButton.setText("List View");
-                listButton.setBorder(null);
-                listButton.setMaximumSize(new java.awt.Dimension(390, 48));
-                listButton.setMinimumSize(new java.awt.Dimension(390, 48));
-                listButton.setPreferredSize(new java.awt.Dimension(390, 48));
-                listButton.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                // listButtonActionPerformed(evt);
-                        }
-                });
-
-                javax.swing.GroupLayout listBarLayout = new javax.swing.GroupLayout(listBar);
-                listBar.setLayout(listBarLayout);
-                listBarLayout.setHorizontalGroup(
-                                listBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(listBarLayout.createSequentialGroup()
-                                                                .addComponent(listButton,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                .addGap(0, 8, Short.MAX_VALUE)));
-                listBarLayout.setVerticalGroup(
-                                listBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(listBarLayout.createSequentialGroup()
-                                                                .addComponent(listButton,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(0, 0, Short.MAX_VALUE)));
-
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                menuPanel.add(listBar, gridBagConstraints);
-
                 helpBar.setBackground(new java.awt.Color(255, 255, 255));
                 helpBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255)));
                 helpBar.setMaximumSize(new java.awt.Dimension(1600, 50));
@@ -414,6 +370,50 @@ public class HomePanel extends JPanel {
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                 gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
                 menuPanel.add(helpBar, gridBagConstraints);
+
+                signOutBar.setBackground(new java.awt.Color(255, 255, 255));
+                signOutBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255)));
+                signOutBar.setMaximumSize(new java.awt.Dimension(1600, 50));
+                signOutBar.setMinimumSize(new java.awt.Dimension(400, 50));
+                signOutBar.setPreferredSize(new java.awt.Dimension(400, 50));
+
+                signOutButton.setBackground(new java.awt.Color(255, 255, 255));
+                signOutButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+                signOutButton.setForeground(new java.awt.Color(0, 0, 255));
+                signOutButton.setText("Sign Out");
+                signOutButton.setBorder(null);
+                signOutButton.setMaximumSize(new java.awt.Dimension(390, 48));
+                signOutButton.setMinimumSize(new java.awt.Dimension(390, 48));
+                signOutButton.setPreferredSize(new java.awt.Dimension(390, 48));
+                signOutButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        }
+                });
+
+                javax.swing.GroupLayout signOutBarLayout = new javax.swing.GroupLayout(signOutBar);
+                signOutBar.setLayout(signOutBarLayout);
+                signOutBarLayout.setHorizontalGroup(
+                                signOutBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(signOutBarLayout.createSequentialGroup()
+                                                                .addComponent(signOutButton,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE)
+                                                                .addGap(0, 8, Short.MAX_VALUE)));
+                signOutBarLayout.setVerticalGroup(
+                                signOutBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(signOutBarLayout.createSequentialGroup()
+                                                                .addComponent(signOutButton,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(0, 0, Short.MAX_VALUE)));
+
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+                menuPanel.add(signOutBar, gridBagConstraints);
 
                 javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
                 mapPanel.setLayout(mapPanelLayout);

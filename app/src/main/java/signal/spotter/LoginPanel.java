@@ -2,12 +2,12 @@ package signal.spotter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
 public class LoginPanel extends JPanel {
-    private JTextField loginField;
-    private JPasswordField passwordField;
+    public JTextField loginField;
+    public JPasswordField passwordField;
     public JButton loginButton;
+    public JButton registerButton;
 
     public LoginPanel() {
         // Use GridBagLayout with GridBagConstraints
@@ -33,7 +33,8 @@ public class LoginPanel extends JPanel {
         passwordField = new JPasswordField(20);
         // Create login button
         loginButton = new JButton("Login");
-        // Add action listener to login button
+        // Create register button
+        registerButton = new JButton("Register");
 
         // Add components to panel with GridBagConstraints
         c.gridx = 0;
@@ -56,6 +57,12 @@ public class LoginPanel extends JPanel {
         c.gridx = 1;
         c.gridy = 3;
         add(loginButton, c);
+        c.gridx = 1;
+        c.gridy = 4;
+        add(new JLabel("or"), c);
+        c.gridx = 1;
+        c.gridy = 5;
+        add(registerButton, c);
     }
 
     public String getLogin() {
