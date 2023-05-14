@@ -1,0 +1,23 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-signalspotter-staging-184348-authRole",
+      "UnauthRoleArn": "arn:aws:iam::540513587064:role/amplify-signalspotter-staging-184348-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::540513587064:role/amplify-signalspotter-staging-184348-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-signalspotter-staging-184348-deployment",
+      "UnauthRoleName": "amplify-signalspotter-staging-184348-unauthRole",
+      "StackName": "amplify-signalspotter-staging-184348",
+      "StackId": "arn:aws:cloudformation:us-east-1:540513587064:stack/amplify-signalspotter-staging-184348/a1c50840-d7cf-11ed-8356-12e671805267",
+      "AmplifyAppId": "d3pzxzwr8methf"
+    },
+    "categories": {
+      "auth": {
+        "signalspotter": {}
+      },
+      "api": {
+        "signalspotter": {}
+      }
+    }
+  }
+}

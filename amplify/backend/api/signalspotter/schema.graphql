@@ -1,0 +1,7 @@
+type Reports @model @auth(rules: [{allow: groups, groups: ["signalspotter_usergroup"]}]) {
+  id: ID!
+  user: ID
+  x: Float
+  y: Float
+  datetime: AWSDateTime
+}

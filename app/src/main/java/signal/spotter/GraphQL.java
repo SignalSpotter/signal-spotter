@@ -39,8 +39,6 @@ public class GraphQL {
         try {
             URI uri = new URIBuilder(API_ENDPOINT).build();
 
-            System.out.println("Bearer " + JWT);
-
             HttpPost httpPost = new HttpPost(uri);
             httpPost.setHeader("Content-Type", "application/json");
             httpPost.setHeader("Authorization", "Bearer " + JWT);
@@ -52,7 +50,6 @@ public class GraphQL {
             if (responseEntity != null) {
                 responseString = EntityUtils.toString(responseEntity, StandardCharsets.UTF_8);
             }
-            System.out.println(responseString);
 
             return new Gson().fromJson(responseString, GraphqlResponse.class).getData().getListReports().getItems();
 
@@ -86,14 +83,13 @@ public class GraphQL {
 
             HttpPost httpPost = new HttpPost(uri);
             httpPost.setHeader("Content-Type", "application/json");
-            httpPost.setHeader("Bearer", JWT);
+            httpPost.setHeader("Authorization", "Bearer " + JWT);
             httpPost.setEntity(new StringEntity(requestBody, ContentType.APPLICATION_JSON));
 
             CloseableHttpClient httpClient = HttpClients.createDefault();
             HttpEntity responseEntity = httpClient.execute(httpPost).getEntity();
             if (responseEntity != null) {
-                String responseString = EntityUtils.toString(responseEntity);
-                System.out.println(responseString);
+                System.out.println("Report creation successful");
                 return true;
             }
             System.out.println("Report creation returned no response");

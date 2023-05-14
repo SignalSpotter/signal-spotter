@@ -17,7 +17,6 @@ public class DashboardPanel extends JPanel {
     // Wherever the user's cursor is
     volatile Point cursor = null;
     private boolean isReporting = false;
-    public static List<Report> reports;
 
     public DashboardPanel() {
 
@@ -29,6 +28,18 @@ public class DashboardPanel extends JPanel {
             isReporting = !(isReporting);
             reportButton.setBackground(isReporting ? Color.RED : Color.GREEN);
             reportButton.setText(isReporting ? "Stop Reporting" : "Report");
+        });
+
+        // Creating the report button
+        JButton refreshButton = new JButton("Refresh");
+        refreshButton.setBackground(Color.GREEN);
+        refreshButton.setForeground(Color.BLACK);
+        refreshButton.addActionListener(e -> {
+            try {
+                GlobalState.getInstance().setReports(GraphQL.queryReports());
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
         });
 
         // Creating the slider
@@ -59,7 +70,7 @@ public class DashboardPanel extends JPanel {
 
                 // Draw a small circle at each reported value
 
-                List<Report> filteredReports = reports.stream()
+                List<Report> filteredReports = GlobalState.getInstance().getReports().stream()
                         .filter(report -> {
                             LocalTime time = LocalTime.parse(report.getDatetime().substring(11, 19));
                             return time.isAfter(LocalTime.of(slider.sliderMin.getValue(), 59))
@@ -106,34 +117,35 @@ public class DashboardPanel extends JPanel {
                     isReporting = false;
                     reportButton.setBackground(Color.GREEN);
                     reportButton.setText("Report");
-                }
 
-                try {
-                    // Get the current date and time in ISO 8601 format
-                    LocalDateTime now = LocalDateTime.now();
-                    DateTimeFormatter awsFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-                    String awsDateTime = now.format(awsFormatter);
+                    try {
+                        // Get the current date and time in ISO 8601 format
+                        LocalDateTime now = LocalDateTime.now();
+                        DateTimeFormatter awsFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                        String awsDateTime = now.format(awsFormatter);
 
-                    float x = e.getX() / (float) scaledWidth; // Get the current x coordinate of the mouse
-                    float y = e.getY() / (float) scaledHeight; // Get the current y coordinate of the mouse
+                        float x = e.getX() / (float) scaledWidth; // Get the current x coordinate of the mouse
+                        float y = e.getY() / (float) scaledHeight; // Get the current y coordinate of the mouse
 
-                    GraphQL.createReport(new Report(awsDateTime, x, y));
-                    System.out.println("Report creation successful");
+                        GraphQL.createReport(new Report(awsDateTime, x, y));
 
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
 
-                try {
-                    Thread.sleep(2000);
-                    reports = GraphQL.queryReports();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
+                    try {
+                        Thread.sleep(2000);
+                        GlobalState.getInstance().setReports(GraphQL.queryReports());
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }
         });
 
         add(reportButton);
+
+        add(refreshButton);
 
         add(image_label);
 

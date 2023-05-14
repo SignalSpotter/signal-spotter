@@ -32,7 +32,7 @@ public class GUI extends JFrame {
             try {
                 GlobalState.getInstance()
                         .setJWT(Authentication.Authenticate(loginPanel.getLogin(), loginPanel.getPassword()));
-                DashboardPanel.reports = GraphQL.queryReports();
+                GlobalState.getInstance().setReports(GraphQL.queryReports());
                 cardLayout.show(cardPanel, "homePanel");
             } catch (Exception e1) {
                 JOptionPane.showMessageDialog(null, "Error, incorrect username or password!");
