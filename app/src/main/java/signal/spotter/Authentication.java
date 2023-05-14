@@ -24,7 +24,7 @@ public class Authentication {
 
     public static boolean isAuthenticated = false;
 
-    public static boolean Authenticate(String username, String password) throws Exception {
+    public static String Authenticate(String username, String password) throws Exception {
 
         String COGNITO_CLIENT_ID = "";
 
@@ -61,11 +61,10 @@ public class Authentication {
             }
 
             JSONObject responseObject = new JSONObject(responseString);
-            String session = responseObject.getString("Session");
-
+            String jwt = responseObject.getJSONObject("AuthenticationResult").getString("AccessToken");
             isAuthenticated = true;
 
-            return session != null;
+            return jwt;
 
         } catch (Exception e) {
             throw (new Exception("Error, failed authentication: " + e.getMessage()));

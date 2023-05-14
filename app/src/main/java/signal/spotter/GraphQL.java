@@ -24,7 +24,7 @@ public class GraphQL {
     public static List<Report> queryReports() throws Exception {
         final String requestBody = "{\"query\": \"query { listReports { items { datetime x y } } }\"}";
         String API_ENDPOINT = "";
-        String API_KEY = "";
+        String JWT = GlobalState.getInstance().getJWT();
 
         try {
             Properties properties = new Properties();
@@ -32,7 +32,6 @@ public class GraphQL {
                     new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/local.properties"));
 
             API_ENDPOINT = properties.getProperty("API_ENDPOINT");
-            API_KEY = properties.getProperty("API_KEY");
         } catch (IOException e) {
             throw (new FileNotFoundException("The config file for the API endpoints and keys was not found"));
         }
@@ -40,9 +39,11 @@ public class GraphQL {
         try {
             URI uri = new URIBuilder(API_ENDPOINT).build();
 
+            System.out.println("Bearer " + JWT);
+
             HttpPost httpPost = new HttpPost(uri);
             httpPost.setHeader("Content-Type", "application/json");
-            httpPost.setHeader("x-api-key", API_KEY);
+            httpPost.setHeader("Authorization", "Bearer " + JWT);
             httpPost.setEntity(new StringEntity(requestBody, ContentType.APPLICATION_JSON));
 
             CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -51,10 +52,12 @@ public class GraphQL {
             if (responseEntity != null) {
                 responseString = EntityUtils.toString(responseEntity, StandardCharsets.UTF_8);
             }
+            System.out.println(responseString);
 
             return new Gson().fromJson(responseString, GraphqlResponse.class).getData().getListReports().getItems();
 
         } catch (Exception e) {
+            e.printStackTrace();
             throw (new Exception("Error in queryReports method."));
         }
     }
@@ -66,7 +69,7 @@ public class GraphQL {
                 report.getDatetime(), report.getX(), report.getY());
 
         String API_ENDPOINT = "";
-        String API_KEY = "";
+        String JWT = GlobalState.getInstance().getJWT();
 
         try {
             Properties properties = new Properties();
@@ -74,7 +77,6 @@ public class GraphQL {
                     new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/local.properties"));
 
             API_ENDPOINT = properties.getProperty("API_ENDPOINT");
-            API_KEY = properties.getProperty("API_KEY");
         } catch (IOException e) {
             throw (new FileNotFoundException("The config file for the API endpoints and keys was not found"));
         }
@@ -84,7 +86,7 @@ public class GraphQL {
 
             HttpPost httpPost = new HttpPost(uri);
             httpPost.setHeader("Content-Type", "application/json");
-            httpPost.setHeader("x-api-key", API_KEY);
+            httpPost.setHeader("Bearer", JWT);
             httpPost.setEntity(new StringEntity(requestBody, ContentType.APPLICATION_JSON));
 
             CloseableHttpClient httpClient = HttpClients.createDefault();

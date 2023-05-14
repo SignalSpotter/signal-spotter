@@ -7,3 +7,5 @@ build
 local.properties
 
 .vscode
+
+test.js

@@ -2,6 +2,7 @@ package signal.spotter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class LoginPanel extends JPanel {
     private JTextField loginField;

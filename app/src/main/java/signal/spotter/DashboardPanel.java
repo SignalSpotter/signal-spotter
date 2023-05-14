@@ -17,16 +17,9 @@ public class DashboardPanel extends JPanel {
     // Wherever the user's cursor is
     volatile Point cursor = null;
     private boolean isReporting = false;
-    private List<Report> reports;
+    public static List<Report> reports;
 
     public DashboardPanel() {
-
-        // Query all of the reports from the table
-        try {
-            reports = GraphQL.queryReports();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         // Creating the report button
         JButton reportButton = new JButton("Report");
