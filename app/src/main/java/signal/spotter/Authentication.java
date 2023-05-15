@@ -1,8 +1,11 @@
 package signal.spotter;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
@@ -27,9 +30,10 @@ public class Authentication {
     public static String Authenticate(String username, String password) throws Exception {
         String COGNITO_CLIENT_ID = "";
         try {
+            ClassLoader classLoader = Authentication.class.getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("local.properties");
             Properties properties = new Properties();
-            properties.load(
-                    new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/local.properties"));
+            properties.load(inputStream);
             COGNITO_CLIENT_ID = properties.getProperty("COGNITO_CLIENT_ID");
         } catch (IOException e) {
             throw (new FileNotFoundException("The config file for the API endpoints and keys was not found"));
@@ -63,9 +67,10 @@ public class Authentication {
     public static boolean Register(String username, String password) throws Exception {
         String COGNITO_CLIENT_ID = "";
         try {
+            ClassLoader classLoader = Authentication.class.getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("local.properties");
             Properties properties = new Properties();
-            properties.load(
-                    new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/local.properties"));
+            properties.load(inputStream);
             COGNITO_CLIENT_ID = properties.getProperty("COGNITO_CLIENT_ID");
         } catch (IOException e) {
             throw (new FileNotFoundException("The config file for the API endpoints and keys was not found"));

@@ -3,6 +3,7 @@ package signal.spotter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -27,9 +28,10 @@ public class GraphQL {
         String JWT = GlobalState.getInstance().getJWT();
 
         try {
+            ClassLoader classLoader = GraphQL.class.getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("local.properties");
             Properties properties = new Properties();
-            properties.load(
-                    new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/local.properties"));
+            properties.load(inputStream);
 
             API_ENDPOINT = properties.getProperty("API_ENDPOINT");
         } catch (IOException e) {
@@ -69,9 +71,10 @@ public class GraphQL {
         String JWT = GlobalState.getInstance().getJWT();
 
         try {
+            ClassLoader classLoader = GraphQL.class.getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("local.properties");
             Properties properties = new Properties();
-            properties.load(
-                    new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/local.properties"));
+            properties.load(inputStream);
 
             API_ENDPOINT = properties.getProperty("API_ENDPOINT");
         } catch (IOException e) {

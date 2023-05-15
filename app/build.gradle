@@ -28,6 +28,7 @@ application {
     mainClass = 'signal.spotter.App'
 }
 
+
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
