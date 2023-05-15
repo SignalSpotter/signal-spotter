@@ -4,11 +4,8 @@ import javax.swing.*;
 
 public class HomePanel extends JPanel {
 
-        private javax.swing.JPanel fastBar;
-        private javax.swing.JButton fastButton;
         private javax.swing.JPanel helpBar;
         private javax.swing.JButton helpButton;
-        private javax.swing.JButton jButton2;
         private javax.swing.JMenuItem jMenuItem1;
         private javax.swing.JPopupMenu jPopupMenu1;
         public javax.swing.JPanel mapPanel;
@@ -16,21 +13,16 @@ public class HomePanel extends JPanel {
         private javax.swing.JButton menuButton;
         public javax.swing.JPanel menuIcon;
         private javax.swing.JPanel menuPanel;
-        public javax.swing.JPanel refreshBar;
-        private javax.swing.JButton refreshButton;
         private javax.swing.JPanel reportBar;
         private javax.swing.JButton reportButton;
         private javax.swing.JPanel signOutBar;
         public javax.swing.JButton signOutButton;
-        private javax.swing.JPanel trendsBar;
-        private javax.swing.JButton trendsButton;
 
         public HomePanel() {
                 java.awt.GridBagConstraints gridBagConstraints;
 
                 jPopupMenu1 = new javax.swing.JPopupMenu();
                 jMenuItem1 = new javax.swing.JMenuItem();
-                jButton2 = new javax.swing.JButton();
                 menuBar = new javax.swing.JPanel();
                 menuIcon = new javax.swing.JPanel();
                 menuButton = new javax.swing.JButton();
@@ -38,16 +30,10 @@ public class HomePanel extends JPanel {
                 menuPanel = new javax.swing.JPanel();
                 reportBar = new javax.swing.JPanel();
                 reportButton = new javax.swing.JButton();
-                trendsBar = new javax.swing.JPanel();
-                trendsButton = new javax.swing.JButton();
-                fastBar = new javax.swing.JPanel();
-                fastButton = new javax.swing.JButton();
                 helpBar = new javax.swing.JPanel();
                 helpButton = new javax.swing.JButton();
                 signOutBar = new javax.swing.JPanel();
                 signOutButton = new javax.swing.JButton();
-                refreshBar = new javax.swing.JPanel();
-                refreshButton = new javax.swing.JButton();
 
                 jPopupMenu1.setBackground(new java.awt.Color(255, 255, 255));
                 jPopupMenu1.setInheritsPopupMenu(true);
@@ -63,14 +49,6 @@ public class HomePanel extends JPanel {
                 jMenuItem1.setMinimumSize(new java.awt.Dimension(400, 50));
                 jMenuItem1.setPreferredSize(new java.awt.Dimension(400, 50));
                 jMenuItem1.getAccessibleContext().setAccessibleParent(jPopupMenu1);
-
-                jButton2.setBackground(new java.awt.Color(255, 255, 255));
-                jButton2.setText("jButton2");
-                jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-                jButton2.setMaximumSize(new java.awt.Dimension(400, 50));
-                jButton2.setMinimumSize(new java.awt.Dimension(400, 50));
-                jButton2.setPreferredSize(new java.awt.Dimension(400, 50));
-                jButton2.getAccessibleContext().setAccessibleParent(jPopupMenu1);
 
                 setBackground(new java.awt.Color(255, 255, 255));
                 setName("mainFrame"); // NOI18N
@@ -169,8 +147,7 @@ public class HomePanel extends JPanel {
                 mapPanel.setMinimumSize(new java.awt.Dimension(400, 650));
                 mapPanel.setPreferredSize(new java.awt.Dimension(400, 650));
 
-                menuPanel.setBackground(new java.awt.Color(255, 153, 255));
-                menuPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255), 2));
+                menuPanel.setBackground(new java.awt.Color(153, 204, 255));
                 menuPanel.setAlignmentX(0.0F);
                 menuPanel.setAlignmentY(0.0F);
                 menuPanel.setMaximumSize(new java.awt.Dimension(396, 250));
@@ -235,102 +212,6 @@ public class HomePanel extends JPanel {
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                 gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
                 menuPanel.add(reportBar, gridBagConstraints);
-
-                trendsBar.setBackground(new java.awt.Color(255, 255, 255));
-                trendsBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255)));
-                trendsBar.setAlignmentX(1.0F);
-                trendsBar.setAlignmentY(0.0F);
-                trendsBar.setMaximumSize(new java.awt.Dimension(1600, 50));
-                trendsBar.setMinimumSize(new java.awt.Dimension(400, 50));
-                trendsBar.setPreferredSize(new java.awt.Dimension(400, 50));
-
-                trendsButton.setBackground(new java.awt.Color(255, 255, 255));
-                trendsButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-                trendsButton.setForeground(new java.awt.Color(0, 0, 255));
-                trendsButton.setText("Signal Trends");
-                trendsButton.setBorder(null);
-                trendsButton.setMaximumSize(new java.awt.Dimension(390, 48));
-                trendsButton.setMinimumSize(new java.awt.Dimension(390, 48));
-                trendsButton.setPreferredSize(new java.awt.Dimension(396, 48));
-                trendsButton.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                // trendsButtonActionPerformed(evt);
-                        }
-                });
-
-                javax.swing.GroupLayout trendsBarLayout = new javax.swing.GroupLayout(trendsBar);
-                trendsBar.setLayout(trendsBarLayout);
-                trendsBarLayout.setHorizontalGroup(
-                                trendsBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trendsBarLayout
-                                                                .createSequentialGroup()
-                                                                .addComponent(trendsButton,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                390, Short.MAX_VALUE)
-                                                                .addContainerGap()));
-                trendsBarLayout.setVerticalGroup(
-                                trendsBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trendsBarLayout
-                                                                .createSequentialGroup()
-                                                                .addComponent(trendsButton,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(0, 0, Short.MAX_VALUE)));
-
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-                gridBagConstraints.weightx = 1.0;
-                menuPanel.add(trendsBar, gridBagConstraints);
-
-                fastBar.setBackground(new java.awt.Color(255, 255, 255));
-                fastBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255)));
-                fastBar.setAlignmentX(2.0F);
-                fastBar.setAlignmentY(0.0F);
-                fastBar.setMaximumSize(new java.awt.Dimension(1600, 50));
-                fastBar.setMinimumSize(new java.awt.Dimension(400, 50));
-                fastBar.setPreferredSize(new java.awt.Dimension(400, 50));
-
-                fastButton.setBackground(new java.awt.Color(255, 255, 255));
-                fastButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-                fastButton.setForeground(new java.awt.Color(0, 0, 255));
-                fastButton.setText("Fast Wifi Now");
-                fastButton.setBorder(null);
-                fastButton.setMaximumSize(new java.awt.Dimension(390, 48));
-                fastButton.setMinimumSize(new java.awt.Dimension(390, 48));
-                fastButton.setPreferredSize(new java.awt.Dimension(390, 48));
-                fastButton.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                // fastButtonActionPerformed(evt);
-                        }
-                });
-
-                javax.swing.GroupLayout fastBarLayout = new javax.swing.GroupLayout(fastBar);
-                fastBar.setLayout(fastBarLayout);
-                fastBarLayout.setHorizontalGroup(
-                                fastBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(fastBarLayout.createSequentialGroup()
-                                                                .addComponent(fastButton,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                .addGap(0, 8, Short.MAX_VALUE)));
-                fastBarLayout.setVerticalGroup(
-                                fastBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(fastBarLayout.createSequentialGroup()
-                                                                .addComponent(fastButton,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(0, 0, Short.MAX_VALUE)));
-
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-                menuPanel.add(fastBar, gridBagConstraints);
 
                 helpBar.setBackground(new java.awt.Color(255, 255, 255));
                 helpBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255)));
@@ -449,35 +330,5 @@ public class HomePanel extends JPanel {
                 gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
                 add(mapPanel, gridBagConstraints);
 
-                refreshBar.setBackground(new java.awt.Color(0, 0, 255));
-                refreshBar.setAlignmentX(0.0F);
-                refreshBar.setAlignmentY(15.0F);
-                refreshBar.setMinimumSize(new java.awt.Dimension(400, 50));
-                refreshBar.setPreferredSize(new java.awt.Dimension(400, 50));
-                refreshBar.setLayout(new java.awt.GridBagLayout());
-
-                refreshButton.setBackground(new java.awt.Color(0, 0, 255));
-                refreshButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-                refreshButton.setForeground(new java.awt.Color(255, 255, 255));
-                refreshButton.setText("Refresh");
-                refreshButton.setBorder(null);
-                refreshButton.setMaximumSize(new java.awt.Dimension(1500, 46));
-                refreshButton.setMinimumSize(new java.awt.Dimension(396, 46));
-                refreshButton.setPreferredSize(new java.awt.Dimension(400, 48));
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.insets = new java.awt.Insets(13, 162, 14, 163);
-                refreshBar.add(refreshButton, gridBagConstraints);
-
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
-                gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.weighty = 0.5;
-                add(refreshBar, gridBagConstraints);
         }
 }

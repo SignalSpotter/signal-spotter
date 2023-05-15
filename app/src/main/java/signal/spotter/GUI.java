@@ -6,7 +6,7 @@ import java.awt.CardLayout;
 import javax.swing.*;
 
 public class GUI extends JFrame {
-    public final int screen_width = 400;
+    public final int screen_width = 415;
     public final int screen_height = 750;
 
     public static JPanel cardPanel;
