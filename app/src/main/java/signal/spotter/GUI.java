@@ -26,6 +26,7 @@ public class GUI extends JFrame {
         RegisterPanel registerPanel = new RegisterPanel();
         DashboardPanel dashboardPanel = new DashboardPanel();
         HomePanel homePanel = new HomePanel();
+        HelpPanel helpPanel = new HelpPanel();
 
         loginPanel.loginButton.addActionListener(e -> {
             try {
@@ -71,6 +72,7 @@ public class GUI extends JFrame {
         cardPanel.add(registerPanel, "registerPanel");
         cardPanel.add(dashboardPanel, "dashboardPanel");
         cardPanel.add(homePanel, "homePanel");
+        cardPanel.add(helpPanel, "helpPanel");
 
         topHeader = new javax.swing.JPanel();
         topHeader.setBackground(new java.awt.Color(255, 255, 255));

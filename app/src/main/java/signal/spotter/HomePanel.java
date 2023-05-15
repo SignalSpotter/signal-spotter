@@ -229,7 +229,7 @@ public class HomePanel extends JPanel {
                 helpButton.setPreferredSize(new java.awt.Dimension(390, 48));
                 helpButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                // helpButtonActionPerformed(evt);
+                                GUI.cardLayout.show(GUI.cardPanel, "helpPanel");
                         }
                 });
 
