@@ -199,6 +199,12 @@ public class HomePanel extends JPanel {
                 reportButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 GUI.cardLayout.show(GUI.cardPanel, "dashboardPanel");
+                                try {
+                                        GlobalState.getInstance().setReports(GraphQL.queryReports());
+                                } catch (Exception e) {
+                                        e.printStackTrace();
+                                }
+
                         }
                 });
 

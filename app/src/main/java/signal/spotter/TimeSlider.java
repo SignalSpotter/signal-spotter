@@ -43,7 +43,7 @@ public class TimeSlider extends JPanel {
         JPanel panel = new JPanel(new GridLayout(2, 1));
 
         // Create slider for minimum value
-        sliderMin = new JSlider(JSlider.HORIZONTAL, 0, 23, 8);
+        sliderMin = new JSlider(JSlider.HORIZONTAL, 0, 23, 0);
         sliderMin.setSnapToTicks(true);
         sliderMin.setMajorTickSpacing(1);
         sliderMin.setMinorTickSpacing(1);
@@ -56,7 +56,7 @@ public class TimeSlider extends JPanel {
         panel.add(sliderMin);
 
         // Create slider for maximum value
-        sliderMax = new JSlider(JSlider.HORIZONTAL, 0, 23, 20);
+        sliderMax = new JSlider(JSlider.HORIZONTAL, 0, 23, 23);
         sliderMax.setSnapToTicks(true);
         sliderMax.setMajorTickSpacing(1);
         sliderMax.setMinorTickSpacing(1);

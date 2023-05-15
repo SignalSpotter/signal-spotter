@@ -22,7 +22,7 @@ import com.google.gson.Gson;
 public class GraphQL {
 
     public static List<Report> queryReports() throws Exception {
-        final String requestBody = "{\"query\": \"query { listReports { items { datetime x y } } }\"}";
+        final String requestBody = "{\"query\": \"query { listReports { items { datetime x y rating } } }\"}";
         String API_ENDPOINT = "";
         String JWT = GlobalState.getInstance().getJWT();
 
@@ -62,8 +62,8 @@ public class GraphQL {
     public static boolean createReport(Report report) throws Exception {
 
         final String requestBody = String.format(
-                "{\"query\": \"mutation { createReports(input: {datetime: \\\"%s\\\", x: %f, y: %f }) { id datetime x y } }\"}",
-                report.getDatetime(), report.getX(), report.getY());
+                "{\"query\": \"mutation { createReports(input: {datetime: \\\"%s\\\", x: %f, y: %f, rating: \\\"%s\\\" }) { id datetime x y rating } }\"}",
+                report.getDatetime(), report.getX(), report.getY(), report.getRating());
 
         String API_ENDPOINT = "";
         String JWT = GlobalState.getInstance().getJWT();
@@ -90,6 +90,8 @@ public class GraphQL {
             HttpEntity responseEntity = httpClient.execute(httpPost).getEntity();
             if (responseEntity != null) {
                 System.out.println("Report creation successful");
+                String responseString = EntityUtils.toString(responseEntity, StandardCharsets.UTF_8);
+                System.out.println(responseString);
                 return true;
             }
             System.out.println("Report creation returned no response");

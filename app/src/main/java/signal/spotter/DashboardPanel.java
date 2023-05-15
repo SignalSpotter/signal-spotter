@@ -17,29 +17,31 @@ public class DashboardPanel extends JPanel {
     // Wherever the user's cursor is
     volatile Point cursor = null;
     private boolean isReporting = false;
+    private String reportingMode = "none";
+    private List<Report> filteredReports;
 
     public DashboardPanel() {
 
-        // Creating the report button
-        JButton reportButton = new JButton("Report");
-        reportButton.setBackground(Color.GREEN);
-        reportButton.setForeground(Color.BLACK);
-        reportButton.addActionListener(e -> {
+        // Creating the Goodreport button
+        JButton goodReportButton = new JButton("Report Good");
+        goodReportButton.setBackground(Color.GREEN);
+        goodReportButton.setForeground(Color.BLACK);
+        goodReportButton.addActionListener(e -> {
             isReporting = !(isReporting);
-            reportButton.setBackground(isReporting ? Color.RED : Color.GREEN);
-            reportButton.setText(isReporting ? "Stop Reporting" : "Report");
+            reportingMode = (reportingMode.equals("good") ? "none" : "good");
+            goodReportButton.setBackground(isReporting ? Color.YELLOW : Color.GREEN);
+            goodReportButton.setText(isReporting ? "Stop Reporting" : "Report Good");
         });
 
-        // Creating the report button
-        JButton refreshButton = new JButton("Refresh");
-        refreshButton.setBackground(Color.GREEN);
-        refreshButton.setForeground(Color.BLACK);
-        refreshButton.addActionListener(e -> {
-            try {
-                GlobalState.getInstance().setReports(GraphQL.queryReports());
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
+        // Creating the Badreport button
+        JButton badReportButton = new JButton("Report Bad");
+        badReportButton.setBackground(Color.RED);
+        badReportButton.setForeground(Color.BLACK);
+        badReportButton.addActionListener(e -> {
+            isReporting = !(isReporting);
+            reportingMode = (reportingMode.equals("bad") ? "none" : "bad");
+            badReportButton.setBackground(isReporting ? Color.YELLOW : Color.RED);
+            badReportButton.setText(isReporting ? "Stop Reporting" : "Report Bad");
         });
 
         // Creating the slider
@@ -70,7 +72,7 @@ public class DashboardPanel extends JPanel {
 
                 // Draw a small circle at each reported value
 
-                List<Report> filteredReports = GlobalState.getInstance().getReports().stream()
+                filteredReports = GlobalState.getInstance().getReports().stream()
                         .filter(report -> {
                             LocalTime time = LocalTime.parse(report.getDatetime().substring(11, 19));
                             return time.isAfter(LocalTime.of(slider.sliderMin.getValue(), 59))
@@ -79,7 +81,10 @@ public class DashboardPanel extends JPanel {
                         .collect(Collectors.toList());
 
                 for (Report report : filteredReports) {
-                    g.setColor(Color.RED);
+                    if (report.getRating().equals("good"))
+                        g.setColor(Color.GREEN);
+                    if (report.getRating().equals("bad"))
+                        g.setColor(Color.RED);
                     g.fillOval((int) (report.getX() * scaledWidth), (int) (report.getY() * scaledHeight), 10, 10);
                 }
 
@@ -89,7 +94,7 @@ public class DashboardPanel extends JPanel {
                         int radius = 10;
                         int x = cursor.x - radius;
                         int y = cursor.y - radius;
-                        g.setColor(Color.RED);
+                        g.setColor(Color.YELLOW);
                         g.fillOval(x, y, radius * 2, radius * 2);
                     }
 
@@ -113,10 +118,33 @@ public class DashboardPanel extends JPanel {
 
         image_label.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
+                if (!isReporting) {
+                    float x = e.getX() / (float) scaledWidth; // Get the current x coordinate of the mouse
+                    float y = e.getY() / (float) scaledHeight; // Get the current y coordinate of the mouse
+                    for (Report report : filteredReports) {
+                        double xDiff = Math.abs(report.getX() - x);
+                        double yDiff = Math.abs(report.getY() - y);
+                        if (xDiff <= 0.03 && yDiff <= 0.03) {
+                            String message = String.format("Reported: %s\nX: %f\nY: %f\nRating: %s",
+                                    report.getDatetime(), report.getX(),
+                                    report.getY(), report.getRating());
+                            JOptionPane.showMessageDialog(null, message);
+                        }
+
+                    }
+                    return;
+                }
                 if (isReporting) {
-                    isReporting = false;
-                    reportButton.setBackground(Color.GREEN);
-                    reportButton.setText("Report");
+                    switch (reportingMode) {
+                        case "bad":
+                            badReportButton.setBackground(Color.RED);
+                            badReportButton.setText("Report Bad");
+                            break;
+                        case "good":
+                            goodReportButton.setBackground(Color.GREEN);
+                            goodReportButton.setText("Report Good");
+                            break;
+                    }
 
                     try {
                         // Get the current date and time in ISO 8601 format
@@ -127,11 +155,16 @@ public class DashboardPanel extends JPanel {
                         float x = e.getX() / (float) scaledWidth; // Get the current x coordinate of the mouse
                         float y = e.getY() / (float) scaledHeight; // Get the current y coordinate of the mouse
 
-                        GraphQL.createReport(new Report(awsDateTime, x, y));
+                        String rating = reportingMode; // Get the current rating coordinate of the mouse
+
+                        GraphQL.createReport(new Report(awsDateTime, x, y, rating));
 
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
+
+                    isReporting = false;
+                    reportingMode = "none";
 
                     try {
                         Thread.sleep(2000);
@@ -143,12 +176,9 @@ public class DashboardPanel extends JPanel {
             }
         });
 
-        add(reportButton);
-
-        add(refreshButton);
-
+        add(goodReportButton);
+        add(badReportButton);
         add(image_label);
-
         add(slider);
 
     }

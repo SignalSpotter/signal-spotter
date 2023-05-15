@@ -90,7 +90,7 @@ public class Authentication {
             JSONObject responseObject = new JSONObject(responseString);
             System.out.println(responseString);
             String error = responseObject.optString("message");
-            if (error != null)
+            if (!error.equals(""))
                 throw (new Exception(error));
             return true;
         } catch (Exception e) {

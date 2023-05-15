@@ -42,11 +42,13 @@ class Report {
     private String datetime;
     private double x;
     private double y;
+    private String rating;
 
-    public Report(String datetime, double x, double y) {
+    public Report(String datetime, double x, double y, String rating) {
         this.datetime = datetime;
         this.x = x;
         this.y = y;
+        this.rating = rating;
     }
 
     public String getDatetime() {
@@ -71,5 +73,13 @@ class Report {
 
     public void setY(double y) {
         this.y = y;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 }
